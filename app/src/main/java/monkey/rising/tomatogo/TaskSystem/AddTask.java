@@ -2,10 +2,7 @@ package monkey.rising.tomatogo.TaskSystem;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.view.View;
@@ -17,13 +14,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
 import monkey.rising.tomatogo.R;
 import monkey.rising.tomatogo.config.Utils;
 import monkey.rising.tomatogo.dataoperate.TaskControl;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
+import monkey.rising.tomatogo.dataoperate.TypeControl;
 
 public class AddTask extends AppCompatActivity {
     private EditText content;
@@ -36,8 +33,9 @@ public class AddTask extends AppCompatActivity {
     private Button back;
     private String id;
 
-    private List<String> list=new ArrayList<String>();
+    private ArrayList<String> list=new ArrayList<String>();
     public TaskControl taskControl;
+    public TypeControl typeControl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Utils.configSP = getSharedPreferences("Settings",MODE_PRIVATE);
@@ -70,9 +68,11 @@ public class AddTask extends AppCompatActivity {
         submit=(Button)findViewById(R.id.submit);
         back=(Button)findViewById(R.id.back) ;
         taskControl=new TaskControl(this);
-        taskControl.openDataBase();
-        taskControl.loadTask();
-        taskControl.closeDb();
+        typeControl=new TypeControl(this);
+        typeControl.openDataBase();
+        typeControl.loadtype();
+        typeControl.closeDb();
+
         Intent intent=getIntent();
         user=intent.getStringExtra("userid");
 
@@ -99,7 +99,7 @@ public class AddTask extends AppCompatActivity {
         SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         id=format.format(new java.util.Date());
 
-        list=taskControl.gettype(user);
+        list=typeControl.gettypebyuser(user);
         spinner=(Spinner)findViewById(R.id.spinner) ;
         adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -129,6 +129,11 @@ public class AddTask extends AppCompatActivity {
                 taskControl.openDataBase();
                  taskControl.insertData(id,type.getText().toString(),user,content.getText().toString(),"null",time.getText().toString(),"null",1);
                 taskControl.closeDb();
+                    typeControl.openDataBase();
+                    if(typeControl.Istype(list,type.getText().toString())){
+                        typeControl.insertDate(type.getText().toString(),user);
+                    }
+                    typeControl.closeDb();
                 Intent intent=new Intent(AddTask.this,tasklist.class);
                  intent.putExtra("userid",user);
                  startActivity(intent);

@@ -7,7 +7,9 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 /**
@@ -23,7 +25,7 @@ public class TaskControl {
     }
 
     public void openDataBase(){
-        tdh=new BDH(context,"data.db",null,1);
+        tdh=new BDH(context,"data2.db",null,1);
         try{
             db=tdh.getWritableDatabase();
         }catch (SQLException e){
@@ -36,7 +38,9 @@ public class TaskControl {
             db.close();
         }
     }
-
+public long deletebyuser(String user){
+    return db.delete("task","user='"+user+"'",null);
+}
     public long deletedata(String id){
         return db.delete("task","id='"+id+"'",null);
     }
@@ -57,6 +61,24 @@ public class TaskControl {
 
     }
 
+
+
+    public ArrayList<Task> findbyday(String day,String user){
+        ArrayList<Task> tasksbyday=new ArrayList<>();
+        Date d=null;
+        try {
+            for (Task t:findtaskbyuser(user)) {
+                d=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(t.getId());
+                String s=new SimpleDateFormat("yyyy-MM-dd").format(d);
+                if (s.equals(day)){
+                    tasksbyday.add(t);
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return tasksbyday;
+    }
     public void setTasks(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }

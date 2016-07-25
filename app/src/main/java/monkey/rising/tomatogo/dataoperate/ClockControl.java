@@ -24,7 +24,7 @@ public class ClockControl {
         this.context=context;
     }
     public void openDataBase(){
-        BDH =new BDH(context,"data.db",null,1);
+        BDH =new BDH(context,"data2.db",null,1);
         try{
             db= BDH.getWritableDatabase();
         }catch (SQLException e){
@@ -37,6 +37,10 @@ public class ClockControl {
         }
     }
 
+
+    public long deletebyuser(String user){
+        return db.delete("clock","username='"+user+"'",null);
+    }
     public ArrayList<Clock> getbyType(String type,String user){
         ArrayList<Clock> clocks=new ArrayList<Clock>();
         for (Clock clock:findbyuser(user)) {

@@ -7,35 +7,18 @@
     android:fitsSystemWindows="true"
     tools:context=".TaskSystem.tasklist">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="备忘录"
-        android:textSize="30sp"
-        android:textIsSelectable="false"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/imageView7"
-        android:layout_toEndOf="@+id/imageView7"
-        android:layout_marginTop="3dp"
-        android:layout_marginLeft="10dp" />
-
     <include layout="@layout/content_main2"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/frameLayout7"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:id="@+id/include"
-        android:layout_below="@+id/textView" />
+        android:layout_below="@+id/add"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView7"
+        android:id="@+id/calender"
         android:src="@android:drawable/ic_menu_today"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -83,5 +66,19 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="15sp"
+        android:textIsSelectable="false"
+        android:id="@+id/cant"
+        android:text="日期"
+        android:layout_marginLeft="26dp"
+        android:layout_marginStart="26dp"
+        android:layout_alignBottom="@+id/calender"
+        android:layout_toRightOf="@+id/calender"
+        android:layout_toEndOf="@+id/calender" />
 
 </RelativeLayout>

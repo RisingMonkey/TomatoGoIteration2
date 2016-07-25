@@ -12,6 +12,7 @@ public class BDH extends SQLiteOpenHelper {
     public static final String sql1="Create table task("+"id text primary key ,"+"type text,"+"user text,"+"content text,"+"time text,"+"timeexpected text,"
             +"starttime text,"+"priority integer,"+"isdone text)";
     public static final String Create_user="create table user("+"id text primary key,"+"pw text)";
+    public static final String sql2="create table type("+"name text primary key,"+"userid text)";
     public BDH(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -21,6 +22,7 @@ public class BDH extends SQLiteOpenHelper {
         db.execSQL(sql);
         db.execSQL(sql1);
         db.execSQL(Create_user);
+        db.execSQL(sql2);
     }
 
     @Override

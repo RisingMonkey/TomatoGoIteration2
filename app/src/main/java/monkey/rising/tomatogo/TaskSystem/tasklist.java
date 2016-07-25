@@ -1,17 +1,24 @@
 package monkey.rising.tomatogo.TaskSystem;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import monkey.rising.tomatogo.MainActivity.HomeActivity;
@@ -31,10 +38,14 @@ public class tasklist extends AppCompatActivity implements RemoveListener{
     Button button;
     TaskControl taskControl;
     ImageView taskImage;
+    ImageView can;
     ImageView settingsImage;
     ImageView imageView;
-
-
+Calendar c;
+TextView cant;
+    int chosey;
+    int chosem;
+    int chosed;
 
 
     @Override
@@ -66,28 +77,67 @@ public class tasklist extends AppCompatActivity implements RemoveListener{
         imageView = (ImageView) super.findViewById(R.id.imageView1);
         button=(Button)findViewById(R.id.add) ;
         slide=(slideview) findViewById(R.id.tasklist) ;
+        can=(ImageView)findViewById(R.id.calender);
         slide.setRemoveListener(this);
         taskControl=new TaskControl(this);
         taskControl.openDataBase();
         taskControl.loadTask();
         taskControl.closeDb();
+        cant=(TextView) findViewById(R.id.cant);
         Intent intent=getIntent();
+        c=Calendar.getInstance();
+        c.setTime(new Date());
+
+        chosey=c.get(Calendar.YEAR);
+        chosem=c.get(Calendar.MONTH);
+        chosed=c.get(Calendar.DAY_OF_MONTH);
+        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+        String curdate=format.format(new java.util.Date());
+        cant.setText(curdate);
         userid=intent.getStringExtra("userid");
 
-        for (Task task:taskControl.findtaskbyuser(userid)) {
+        for (Task task:taskControl.findbyday(cant.getText().toString(),userid)) {
             data.add(task.getContent());
         }
         arrayAdapter=new ArrayAdapter<String>(this,R.layout.item,R.id.item,data);
         slide.setAdapter(arrayAdapter);
 
-        ArrayList<String> str=new ArrayList<>();
+        //ArrayList<String> str=new ArrayList<>();
 
-        for (Task task:
-           taskControl.findtaskbyuser(userid) ) {
-            if(!task.isDone)
-            str.add(task.getContent());
+       // for (Task task:
+         //  taskControl.findtaskbyuser(userid) ) {
+        //    if(!task.isDone)
+          //  str.add(task.getContent());
 
-        }
+      //  }
+        can.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog dialog=new DatePickerDialog(tasklist.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        Calendar c=Calendar.getInstance();
+                        c.set(i,i1,i2);
+                      chosed=i2;
+                        chosem=i1;
+                        Log.e("月",i1+"");
+                        chosey=i;
+                        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+                        String setdate=format.format(c.getTime());
+                        cant.setText(setdate);
+
+                        data.clear();
+                        for (Task task:taskControl.findbyday(cant.getText().toString(),userid)) {
+                            data.add(task.getContent());
+                            Log.e("内容",task.getContent());
+                        }
+                       arrayAdapter.notifyDataSetChanged();
+
+                    }
+                },chosey,chosem,chosed);
+                dialog.show();
+            }
+        });
 
         slide.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

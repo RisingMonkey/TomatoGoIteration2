@@ -1,6 +1,7 @@
 package monkey.rising.tomatogo.TaskSystem;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
@@ -14,13 +15,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import monkey.rising.tomatogo.MainActivity.HomeActivity;
 import monkey.rising.tomatogo.R;
 import monkey.rising.tomatogo.config.Utils;
 import monkey.rising.tomatogo.dataoperate.Task;
 import monkey.rising.tomatogo.dataoperate.TaskControl;
+import monkey.rising.tomatogo.dataoperate.TypeControl;
 
 public class EditTask extends AppCompatActivity {
    EditText content;
@@ -29,10 +30,12 @@ public class EditTask extends AppCompatActivity {
     Spinner spinner;
     String userid;
     String mytype;
+    String user;
     Button submit;
     Button start;
     TaskControl taskControl;
-    private List<String> list=new ArrayList<String>();
+    TypeControl typeControl;
+    private ArrayList<String> list=new ArrayList<String>();
    private ArrayAdapter<String> adapter;
     String id;
     @Override
@@ -62,10 +65,16 @@ public class EditTask extends AppCompatActivity {
         //setSupportActionBar(toolbar);
         Intent intent1=getIntent();
         id=intent1.getStringExtra("id");
+       SharedPreferences mySharedPreference = getSharedPreferences("share", MODE_PRIVATE);
+        user = mySharedPreference.getString("userid", "monkey");
         taskControl=new TaskControl(this);
+        typeControl=new TypeControl(this);
         taskControl.openDataBase();
       taskControl.loadTask();
         taskControl.closeDb();
+        typeControl.openDataBase();
+        typeControl.loadtype();
+        typeControl.closeDb();
         submit=(Button)findViewById(R.id.submit) ;
         start=(Button)findViewById(R.id.start) ;
         spinner=(Spinner)findViewById(R.id.spinner2);
@@ -107,6 +116,13 @@ public class EditTask extends AppCompatActivity {
                 taskControl.openDataBase();
                 taskControl.updatedate(id,type.getText().toString(),userid,content.getText().toString(),"null",exptime.getText().toString(),"null",1);
                 taskControl.closeDb();
+                typeControl.openDataBase();
+                if(typeControl.Istype(list,type.getText().toString())){
+                    typeControl.insertDate(type.getText().toString(),user);
+                }
+
+                typeControl.closeDb();
+
                 Intent i=new Intent(EditTask.this,tasklist.class);
                 i.putExtra("userid",userid);
                 startActivity(i);
@@ -121,7 +137,7 @@ public class EditTask extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-       list=taskControl.gettype(userid);
+       list=typeControl.gettypebyuser(userid);
 
 
         adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);

@@ -27,7 +27,7 @@ public class UserControl {
 
 
      public void openDataBase(){
-    udh=new BDH(context,"data.db",null,1);
+    udh=new BDH(context,"data2.db",null,1);
     try{
         database=udh.getWritableDatabase();
     }catch (SQLException e){
