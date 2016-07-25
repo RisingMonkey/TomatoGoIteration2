@@ -46,12 +46,13 @@ public class TypeControl {
 
     public ArrayList<String> gettypebyuser(String user){
         ArrayList<String> types=new ArrayList<>();
+        types.add("其他");
         types.add("学习");
         types.add("运动");
         types.add("娱乐");
         types.add("工作");
         types.add("休息");
-        types.add("其他");
+
         for(type t:this.types){
             if (t.getUserid().equals(user)){
                 if(Istype(types,t.getName())){
