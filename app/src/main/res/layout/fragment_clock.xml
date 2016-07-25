@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="monkey.rising.tomatogo.MainActivity.HomeActivity">
+
+    <TextView
+        android:id="@+id/mytext2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="当前任务"
+
+        android:layout_alignTop="@+id/waterView"
+        android:layout_alignLeft="@+id/minutePicker"
+        android:layout_alignStart="@+id/minutePicker"
+        android:layout_marginTop="51dp"
+        android:textSize="20dp"
+        android:layout_marginLeft="-16dp" />
+
+    <TextView
+        android:id="@+id/mytext3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="时间设置"
+
+        android:layout_alignTop="@+id/minutePicker"
+        android:layout_toRightOf="@+id/imageView4"
+        android:layout_toEndOf="@+id/imageView4"
+        android:layout_marginTop="73dp" />
+
+    <TextView
+        android:id="@+id/mytext5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="min"
+        android:layout_alignTop="@+id/mytext3"
+        android:layout_toRightOf="@+id/minutePicker"
+        android:layout_toEndOf="@+id/minutePicker" />
+
+    <monkey.rising.tomatogo.MainActivity.waterView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/waterView"
+        android:layout_below="@+id/imageView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView4"
+        android:src="@drawable/ic_account_circle_black_30dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:id="@+id/mytext1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="登录/注册"
+
+        android:layout_toRightOf="@id/imageView4" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView5"
+        android:src="@drawable/ic_mode_edit_black_30dp"
+        android:layout_alignBottom="@+id/mytext2"
+        android:layout_toRightOf="@+id/mytext2"
+        android:layout_toEndOf="@+id/mytext2"
+        android:layout_marginTop="10dp" />
+
+    <NumberPicker
+        android:id="@+id/minutePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

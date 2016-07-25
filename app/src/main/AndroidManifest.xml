@@ -10,20 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity.MainActivity"></activity>
-        <activity android:name=".TaskSystem.logactivity"></activity>
-        <activity android:name=".TaskSystem.AddTask"></activity>
-        <activity android:name=".TaskSystem.EditTask"></activity>
-        <activity android:name=".TaskSystem.regisiter"></activity>
-        <activity android:name=".TaskSystem.tasklist"></activity>
-        <activity android:name=".TaskSystem.quicktask"></activity>
-        <activity android:name=".MainActivity.HomeActivity">
+        <activity android:name=".MainActivity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".TaskSystem.logactivity"></activity>
+        <activity android:name=".TaskSystem.AddTask"></activity>
+        <activity android:name=".TaskSystem.EditTask"></activity>
+        <activity android:name=".TaskSystem.regisiter"></activity>
+        <activity android:name=".TaskSystem.tasklist"></activity>
+        <activity android:name=".TaskSystem.quicktask"></activity>
+        <activity android:name=".MainActivity.HomeActivity"></activity>
         <activity android:name=".settings.Settings"></activity>
         <activity android:name=".settings.Skin"/>
         <activity android:name=".settings.Picture"/>
