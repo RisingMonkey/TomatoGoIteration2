@@ -13,18 +13,19 @@
         android:id="@+id/include"
         android:layout_below="@+id/add"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/calender"
-        android:src="@android:drawable/ic_menu_today"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp" />
+        android:src="@drawable/ic_action_CANADER"
+        android:layout_above="@+id/include"
+        android:layout_toLeftOf="@+id/add"
+        android:layout_toStartOf="@+id/add"
+        android:layout_marginRight="103dp"
+        android:layout_marginEnd="103dp" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -61,11 +62,10 @@
         android:layout_height="50dp"
         android:text=""
         android:id="@+id/add"
-        android:background="@drawable/ic_add_black_24dp"
+        android:background="@drawable/ic_action_name"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="30dp" />
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -75,10 +75,18 @@
         android:textIsSelectable="false"
         android:id="@+id/cant"
         android:text="日期"
-        android:layout_marginLeft="26dp"
-        android:layout_marginStart="26dp"
         android:layout_alignBottom="@+id/calender"
-        android:layout_toRightOf="@+id/calender"
-        android:layout_toEndOf="@+id/calender" />
+        android:layout_toLeftOf="@+id/calender"
+        android:layout_toStartOf="@+id/calender"
+        android:layout_marginBottom="5dp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spin"
+        android:layout_alignTop="@+id/cant"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="2dp" />
 
 </RelativeLayout>

@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,9 @@ public class tasklist extends AppCompatActivity implements RemoveListener{
     ImageView can;
     ImageView settingsImage;
     ImageView imageView;
+    Spinner spinner;
+    private ArrayList<String> list=new ArrayList<String>();
+    private ArrayAdapter<String> adapter;
 Calendar c;
 TextView cant;
     int chosey;
@@ -77,6 +81,12 @@ TextView cant;
         imageView = (ImageView) super.findViewById(R.id.imageView1);
         button=(Button)findViewById(R.id.add) ;
         slide=(slideview) findViewById(R.id.tasklist) ;
+        spinner=(Spinner)findViewById(R.id.spin) ;
+        list.add("按日期查看");
+        list.add("总备忘录");
+        adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
         can=(ImageView)findViewById(R.id.calender);
         slide.setRemoveListener(this);
         taskControl=new TaskControl(this);
@@ -110,6 +120,39 @@ TextView cant;
           //  str.add(task.getContent());
 
       //  }
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+               if(list.get(i)=="按日期查看"){
+                   can.setVisibility(View.VISIBLE);
+                   cant.setVisibility(View.VISIBLE);
+                   data.clear();
+                   for (Task task:taskControl.findbyday(cant.getText().toString(),userid)) {
+                       data.add(task.getContent());
+                       Log.e("内容",task.getContent());
+                   }
+                   arrayAdapter.notifyDataSetChanged();
+
+                }
+                else {
+                    data.clear();
+                   can.setVisibility(View.INVISIBLE);
+                   cant.setVisibility(View.INVISIBLE);
+                    for (Task task:taskControl.findtaskbyuser(userid)) {
+
+                        data.add(task.getContent());
+                        Log.e("内容",task.getContent());
+                    }
+                    arrayAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         can.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
