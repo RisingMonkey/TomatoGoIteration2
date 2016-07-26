@@ -1,24 +1,23 @@
 package monkey.rising.tomatogo.config;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.provider.ContactsContract;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.*;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import monkey.rising.tomatogo.R;
 
 public class ConfigView extends AppCompatActivity {
-    Switch shake;
-    Switch bell;
-    Switch light;
-    Switch fullScreen;
+    ToggleButton shake;
+    ToggleButton bell;
+    ToggleButton light;
+    ToggleButton fullScreen;
 
     //ImageView bellImage;
     LinearLayout textSizeChange;
@@ -27,6 +26,9 @@ public class ConfigView extends AppCompatActivity {
     TextView textSizeHint;
     TextView aboutHint;
     TextView bellText;
+    TextView shakeText;
+    TextView fullScreenText;
+    TextView screenOnText;
     int screenOnClickCount = 0;
     int fullScreenOnClickCount = 0;
     @Override
@@ -36,19 +38,23 @@ public class ConfigView extends AppCompatActivity {
         Utils.onActivityCreateSetTheme(this,textSizeLevel);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config_view);
-        shake = (Switch)findViewById(R.id.switch_shake);
-        bell = (Switch)findViewById(R.id.switch_bell);
+        shake = (ToggleButton) findViewById(R.id.switch_shake);
+        bell = (ToggleButton) findViewById(R.id.switch_bell);
         //bellImage = (ImageView)findViewById(R.id.bell_image);
-        light = (Switch)findViewById(R.id.switch_light_switch);
-        fullScreen = (Switch)findViewById(R.id.switch_full_screen);
+        light = (ToggleButton) findViewById(R.id.switch_light_on);
+        fullScreen = (ToggleButton) findViewById(R.id.switch_full_screen);
         textSizeChange = (LinearLayout)findViewById(R.id.config_size);
         aboutUs = (LinearLayout)findViewById(R.id.config_about);
         bellChoice =(LinearLayout)findViewById(R.id.config_bell);
         textSizeHint = (TextView)findViewById(R.id.text_size_hint);
         aboutHint = (TextView)findViewById(R.id.about_us_hint);
         bellText = (TextView)findViewById(R.id.bell_text);
+        shakeText = (TextView)findViewById(R.id.shake_text);
+        fullScreenText = (TextView)findViewById(R.id.full_screen_text);
+        screenOnText = (TextView)findViewById(R.id.screen_on_text);
+
         setInitialState();
-/*        Utils.configSP = getSharedPreferences("SettingsFragment",MODE_PRIVATE);
+/*        Utils.configSP = getSharedPreferences("Settings",MODE_PRIVATE);
         boolean screenOn = Utils.configSP.getBoolean("lightOn",false);
         boolean fullScreen = Utils.configSP.getBoolean("fullScreen",true);
         if (screenOn){
@@ -70,7 +76,7 @@ public class ConfigView extends AppCompatActivity {
         shake.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Utils.configSP = getSharedPreferences("SettingsFragment",MODE_PRIVATE);
+                Utils.configSP = getSharedPreferences("Settings",MODE_PRIVATE);
                 Utils.editor = Utils.configSP.edit();
                 if(b){
                     Utils.editor.putBoolean("shake",true);
@@ -84,7 +90,7 @@ public class ConfigView extends AppCompatActivity {
         bell.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Utils.configSP = getSharedPreferences("SettingsFragment",MODE_PRIVATE);
+                Utils.configSP = getSharedPreferences("Settings",MODE_PRIVATE);
                 Utils.editor = Utils.configSP.edit();
                 if(b){
                     Utils.editor.putBoolean("bell",true);
@@ -105,7 +111,7 @@ public class ConfigView extends AppCompatActivity {
         light.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Utils.configSP = getSharedPreferences("SettingsFragment",MODE_PRIVATE);
+                Utils.configSP = getSharedPreferences("Settings",MODE_PRIVATE);
                 Utils.editor = Utils.configSP.edit();
                 if (isChecked) {
                     Utils.editor.putBoolean("lightOn",true);
@@ -124,7 +130,7 @@ public class ConfigView extends AppCompatActivity {
         fullScreen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Utils.configSP = getSharedPreferences("SettingsFragment",MODE_PRIVATE);
+                Utils.configSP = getSharedPreferences("Settings",MODE_PRIVATE);
                 Utils.editor = Utils.configSP.edit();
 
                 if (isChecked){
@@ -166,26 +172,26 @@ public class ConfigView extends AppCompatActivity {
             case 2:
                 break;
             case 3:
-                shake.setText("   振动");
+                shakeText.setText("   振动");
                 bellText.setText("   铃声");
-                light.setText("   屏幕常亮");
-                fullScreen.setText( "   全屏");
+                screenOnText.setText("   屏幕常亮");
+                fullScreenText.setText( "   全屏");
                 textSizeHint.setText("   字体大小");
                 aboutHint.setText("   关于");
                 break;
             case 4:
-                shake.setText(" 振动");
+                shakeText.setText(" 振动");
                 bellText.setText(" 铃声");
-                light.setText(" 常亮");
-                fullScreen.setText( " 全屏");
+                screenOnText.setText(" 常亮");
+                fullScreenText.setText( " 全屏");
                 textSizeHint.setText(" 字体大小");
                 aboutHint.setText(" 关于");
                 break;
             case 5:
-                shake.setText(" 振动");
+                shakeText.setText(" 振动");
                 bellText.setText(" 铃声");
-                light.setText(" 常亮");
-                fullScreen.setText( " 全屏");
+                screenOnText.setText(" 常亮");
+                fullScreenText.setText( " 全屏");
                 textSizeHint.setText(" 字体大小");
                 aboutHint.setText(" 关于");
                 break;
@@ -199,23 +205,24 @@ public class ConfigView extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
        if(keyCode==KeyEvent.KEYCODE_BACK){
            if((fullScreenOnClickCount%2==1)||(screenOnClickCount%2==1)){
-           AlertDialog.Builder dialog = new AlertDialog.Builder(ConfigView.this);
+/*           AlertDialog.Builder dialog = new AlertDialog.Builder(ConfigView.this);
            dialog.setTitle("注意");
-           dialog.setMessage("您需要保存这些设置吗？");
+           dialog.setMessage("应用需要重启以使设置生效，否则将在下次重启后生效");
            dialog.setCancelable(false);
-           dialog.setPositiveButton("是", new DialogInterface.OnClickListener() {
+           dialog.setPositiveButton("继续", new DialogInterface.OnClickListener() {
                @Override
-               public void onClick(DialogInterface dialogInterface, int i) {
+               public void onClick(DialogInterface dialogInterface, int i) {*/
                    Utils.restartApp(ConfigView.this);
-               }
+        /*       }
            });
-           dialog.setNegativeButton("否", new DialogInterface.OnClickListener() {
+           dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                @Override
                public void onClick(DialogInterface dialogInterface, int i) {
+
                   finish();
                }
            });
-           dialog.show();}
+           dialog.show();*/}
 
            else{
                finish();
@@ -225,7 +232,7 @@ public class ConfigView extends AppCompatActivity {
     }
 
     private void setInitialState(){
-        Utils.configSP = getSharedPreferences("SettingsFragment",MODE_PRIVATE);
+        Utils.configSP = getSharedPreferences("Settings",MODE_PRIVATE);
         boolean shakeStatus = Utils.configSP.getBoolean("shake",true);
         boolean bellStatus = Utils.configSP.getBoolean("bell",true);
         boolean lightOnStatus = Utils.configSP.getBoolean("lightOn",false);
