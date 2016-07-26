@@ -32,7 +32,7 @@ import monkey.rising.tomatogo.dataoperate.TaskControl;
 import monkey.rising.tomatogo.settings.Settings;
 
 public class tasklist extends AppCompatActivity implements RemoveListener{
-   private slideview slide;
+    private slideview slide;
     private ArrayAdapter<String> arrayAdapter;
     private List<String> data=new ArrayList<String>();
     String userid;

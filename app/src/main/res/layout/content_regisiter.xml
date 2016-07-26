@@ -13,6 +13,18 @@
     tools:showIn="@layout/activity_regisiter"
     android:background="#4efcff">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView7"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/linearLayout3"
+        android:layout_alignRight="@+id/linearLayout3"
+        android:layout_alignEnd="@+id/linearLayout3"
+        android:src="@drawable/clocks_bg"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <LinearLayout
     android:layout_width="500dp"
     android:layout_height="wrap_content"
