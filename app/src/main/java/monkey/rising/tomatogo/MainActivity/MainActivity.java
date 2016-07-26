@@ -7,6 +7,7 @@ import android.widget.TabWidget;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import cn.bmob.v3.Bmob;
 import monkey.rising.tomatogo.R;
 
 public class MainActivity extends AppCompatActivity {
