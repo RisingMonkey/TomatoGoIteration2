@@ -19,11 +19,8 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".MainActivity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".TaskSystem.logactivity"></activity>
         <activity android:name=".TaskSystem.AddTask"></activity>
@@ -56,6 +53,15 @@
 
         <activity android:name=".config.BellView"
             android:label="设置"></activity>
+        <activity android:name=".config.NewSettings">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
     </application>
 
 </manifest>

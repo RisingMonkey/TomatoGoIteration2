@@ -63,7 +63,7 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_config, container, false);
+        View view = inflater.inflate(R.layout.activity_new_settings, container, false);
         ButterKnife.inject(this, view);
         Utils.configSP = getActivity().getSharedPreferences("SettingsFragment", getActivity().MODE_PRIVATE);
         boolean screenOn = Utils.configSP.getBoolean("lightOn", false);
