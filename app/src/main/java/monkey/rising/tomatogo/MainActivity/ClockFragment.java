@@ -34,12 +34,11 @@ import butterknife.InjectView;
 import monkey.rising.tomatogo.R;
 import monkey.rising.tomatogo.TaskSystem.logactivity;
 import monkey.rising.tomatogo.TaskSystem.quicktask;
-import monkey.rising.tomatogo.TaskSystem.tasklist;
 import monkey.rising.tomatogo.config.Utils;
 import monkey.rising.tomatogo.dataoperate.ClockControl;
 import monkey.rising.tomatogo.dataoperate.Task;
 import monkey.rising.tomatogo.dataoperate.TaskControl;
-import monkey.rising.tomatogo.settings.Settings;
+import monkey.rising.tomatogo.settings.SettingsFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -99,7 +98,7 @@ public class ClockFragment extends Fragment {
         /*
         应用设置
          */
-        Utils.configSP = getContext().getSharedPreferences("Settings", getContext().MODE_PRIVATE);
+        Utils.configSP = getContext().getSharedPreferences("SettingsFragment", getContext().MODE_PRIVATE);
         boolean screenOn = Utils.configSP.getBoolean("lightOn", false);
         boolean fullScreen = Utils.configSP.getBoolean("fullScreen", true);
         if (screenOn) {
@@ -161,7 +160,7 @@ public class ClockFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Intent settingIntent = new Intent();
-                    settingIntent.setClass(getActivity(), Settings.class);
+                    settingIntent.setClass(getActivity(), SettingsFragment.class);
                     startActivity(settingIntent);
                 }
             });
@@ -252,7 +251,7 @@ public class ClockFragment extends Fragment {
                 waterView.setmWaterLevel(rate);
                 handler.postDelayed(this, 1000);
             } else {
-                mySharedPreference = getActivity().getSharedPreferences("Settings", getActivity().MODE_PRIVATE);
+                mySharedPreference = getActivity().getSharedPreferences("SettingsFragment", getActivity().MODE_PRIVATE);
                 shake = mySharedPreference.getBoolean("shake", true);
                 if (shake) {
                     vibrator.vibrate(3000);

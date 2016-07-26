@@ -3,6 +3,7 @@ package monkey.rising.tomatogo.TaskSystem;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -27,17 +28,15 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import monkey.rising.tomatogo.MainActivity.HomeActivity;
 import monkey.rising.tomatogo.R;
 import monkey.rising.tomatogo.config.Utils;
 import monkey.rising.tomatogo.dataoperate.Task;
 import monkey.rising.tomatogo.dataoperate.TaskControl;
-import monkey.rising.tomatogo.settings.Settings;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TaskFragment extends Fragment implements slideview.RemoveListener {
+public class TasklistFragment extends Fragment implements slideview.RemoveListener {
 
 
     @InjectView(R.id.tasklist)
@@ -63,7 +62,7 @@ public class TaskFragment extends Fragment implements slideview.RemoveListener {
     int chosem;
     int chosed;
 
-    public TaskFragment() {
+    public TasklistFragment() {
         // Required empty public constructor
     }
 
@@ -73,8 +72,9 @@ public class TaskFragment extends Fragment implements slideview.RemoveListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_task, container, false);
+
         ButterKnife.inject(this, view);
-        Utils.configSP = getActivity().getSharedPreferences("Settings",getActivity().MODE_PRIVATE);
+        Utils.configSP = getActivity().getSharedPreferences("SettingsFragment",getActivity().MODE_PRIVATE);
         boolean screenOn = Utils.configSP.getBoolean("lightOn",false);
         boolean fullScreen = Utils.configSP.getBoolean("fullScreen",true);
         if (screenOn){
@@ -103,7 +103,6 @@ public class TaskFragment extends Fragment implements slideview.RemoveListener {
         taskControl.openDataBase();
         taskControl.loadTask();
         taskControl.closeDb();
-        Intent intent=getActivity().getIntent();
         c=Calendar.getInstance();
         c.setTime(new Date());
 
@@ -113,7 +112,9 @@ public class TaskFragment extends Fragment implements slideview.RemoveListener {
         SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
         String curdate=format.format(new java.util.Date());
         cant.setText(curdate);
-        userid=intent.getStringExtra("userid");
+
+        SharedPreferences sp = getActivity().getSharedPreferences("share",getActivity().MODE_PRIVATE);
+        userid=sp.getString("userid","monkey");
 
         for (Task task:taskControl.findbyday(cant.getText().toString(),userid)) {
             data.add(task.getContent());

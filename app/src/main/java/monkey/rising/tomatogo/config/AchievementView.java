@@ -9,7 +9,7 @@ import monkey.rising.tomatogo.R;
 public class AchievementView extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState){
-        Utils.configSP = getSharedPreferences("Settings",MODE_PRIVATE);
+        Utils.configSP = getSharedPreferences("SettingsFragment",MODE_PRIVATE);
         boolean screenOn = Utils.configSP.getBoolean("lightOn",false);
         boolean fullScreen = Utils.configSP.getBoolean("fullScreen",true);
         if (screenOn){

@@ -143,7 +143,7 @@ public long deletebyuser(String user){
         for (Task task:tasks){
             if (userid.equals(task.getUserid())){
             taskbyid.add(task);
-        }
+            }
         }
         return taskbyid ;
     }

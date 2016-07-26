@@ -16,7 +16,7 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
-import monkey.rising.tomatogo.MainActivity.HomeActivity;
+import monkey.rising.tomatogo.MainActivity.MainActivity;
 import monkey.rising.tomatogo.R;
 import monkey.rising.tomatogo.config.Utils;
 import monkey.rising.tomatogo.dataoperate.Task;
@@ -40,7 +40,7 @@ public class EditTask extends AppCompatActivity {
     String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Utils.configSP = getSharedPreferences("Settings",MODE_PRIVATE);
+        Utils.configSP = getSharedPreferences("SettingsFragment",MODE_PRIVATE);
         boolean screenOn = Utils.configSP.getBoolean("lightOn",false);
         boolean fullScreen = Utils.configSP.getBoolean("fullScreen",true);
         if (screenOn){
@@ -123,7 +123,7 @@ public class EditTask extends AppCompatActivity {
 
                 typeControl.closeDb();
 
-                Intent i=new Intent(EditTask.this,tasklist.class);
+                Intent i=new Intent(EditTask.this,TasklistFragment.class);
                 i.putExtra("userid",userid);
                 startActivity(i);
 
@@ -132,7 +132,7 @@ public class EditTask extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(EditTask.this, HomeActivity.class);
+                Intent intent = new Intent(EditTask.this, MainActivity.class);
                 intent.putExtra("taskid",id);
                 startActivity(intent);
             }

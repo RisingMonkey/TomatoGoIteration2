@@ -1,82 +1,97 @@
 package monkey.rising.tomatogo.settings;
 
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import monkey.rising.tomatogo.MainActivity.HomeActivity;
+import monkey.rising.tomatogo.MainActivity.MainActivity;
 import monkey.rising.tomatogo.R;
 import monkey.rising.tomatogo.config.AchievementView;
 import monkey.rising.tomatogo.config.ConfigView;
 import monkey.rising.tomatogo.config.Utils;
 import monkey.rising.tomatogo.statisticView.StatisticActivity;
 
-public class Settings extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class SettingsFragment extends Fragment {
 
 
+    @InjectView(R.id.skin)
+    Button skin;
+    @InjectView(R.id.achievement)
+    Button achievement;
+    @InjectView(R.id.tomato)
+    Button tomato;
+    @InjectView(R.id.setting)
+    Button setting;
+    @InjectView(R.id.label)
+    Button label;
+    @InjectView(R.id.exit)
+    Button exitButton;
+    @InjectView(R.id.layout_settings)
+    RelativeLayout layout;
     @InjectView(R.id.nickname)
     Button nickname;
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 2) {
-            final SharedPreferences pref = getSharedPreferences("color1", MODE_PRIVATE);
+            final SharedPreferences pref = getActivity().getSharedPreferences("color1", getActivity().MODE_PRIVATE);
             int a = pref.getInt("background", 0);
-            final RelativeLayout layout = (RelativeLayout) findViewById(R.id.layout_settings);
             layout.setBackgroundColor(a);
         }
     }
 
-    private Button skin;
-    private Button label;
-    private Button setting;
-    private Button achievement;
-    private Button tomato;
-    private Button exitButton;
+    public SettingsFragment() {
+        // Required empty public constructor
+    }
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        Utils.configSP = getSharedPreferences("Settings", MODE_PRIVATE);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_config, container, false);
+        ButterKnife.inject(this, view);
+        Utils.configSP = getActivity().getSharedPreferences("SettingsFragment", getActivity().MODE_PRIVATE);
         boolean screenOn = Utils.configSP.getBoolean("lightOn", false);
         boolean fullScreen = Utils.configSP.getBoolean("fullScreen", true);
         if (screenOn) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         } else {
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
         if (fullScreen) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         } else {
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
-        Utils.configSP = getSharedPreferences("textSize", MODE_PRIVATE);
+        Utils.configSP = getActivity().getSharedPreferences("textSize", getActivity().MODE_PRIVATE);
         int textSizeLevel = Utils.configSP.getInt("textSizeStatus", 3);
-        Utils.onActivityCreateSetTheme(this, textSizeLevel);
+        Utils.onActivityCreateSetTheme(getActivity(), textSizeLevel);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings);
-        ButterKnife.inject(this);
 
-        final SharedPreferences pref = getSharedPreferences("color1", MODE_PRIVATE);
+        ButterKnife.inject(this,view);
+
+        final SharedPreferences pref = getActivity().getSharedPreferences("color1", getActivity().MODE_PRIVATE);
         int a = pref.getInt("background", 0);
-        final RelativeLayout layout = (RelativeLayout) findViewById(R.id.layout_settings);
         layout.setBackgroundColor(a);
-        skin = (Button) findViewById(R.id.skin);
-        label = (Button) findViewById(R.id.label);
-        setting = (Button) findViewById(R.id.setting);
-        achievement = (Button) findViewById(R.id.achievement);
-        tomato = (Button) findViewById(R.id.tomato);
-        exitButton = (Button) findViewById(R.id.exit);
         skin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Settings.this, Skin.class);
+                Intent intent = new Intent(getActivity(), Skin.class);
                 startActivityForResult(intent, 2);
 
             }
@@ -84,7 +99,7 @@ public class Settings extends AppCompatActivity {
         label.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Settings.this, Label.class);
+                Intent intent = new Intent(getActivity(), Label.class);
 
                 startActivity(intent);
             }
@@ -92,25 +107,25 @@ public class Settings extends AppCompatActivity {
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Settings.this, ConfigView.class);
+                Intent intent = new Intent(getActivity(), ConfigView.class);
                 startActivity(intent);
             }
         });
         achievement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Settings.this, AchievementView.class);
+                Intent intent = new Intent(getActivity(), AchievementView.class);
                 startActivity(intent);
             }
         });
         tomato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Settings.this, StatisticActivity.class);
+                Intent intent = new Intent(getActivity(), StatisticActivity.class);
                 startActivity(intent);
             }
         });
-        SharedPreferences sharedPreferences = getSharedPreferences("share", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("share", getActivity().MODE_PRIVATE);
         String uid = sharedPreferences.getString("userid", "monkey");
         nickname.setText(uid);
         if (uid.equals("monkey"))
@@ -120,15 +135,21 @@ public class Settings extends AppCompatActivity {
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences sharedPreferences = getSharedPreferences("share", AppCompatActivity.MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("share", AppCompatActivity.MODE_PRIVATE);
                 SharedPreferences.Editor e = sharedPreferences.edit();
                 e.putString("userid", "monkey");
                 e.commit();
-                Intent intent = new Intent(Settings.this, HomeActivity.class);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
             }
         });
 
+        return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
     }
 }
-

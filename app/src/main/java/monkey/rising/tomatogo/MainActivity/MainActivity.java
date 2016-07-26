@@ -11,8 +11,6 @@ import monkey.rising.tomatogo.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    @InjectView(android.R.id.tabs)
-    TabWidget tabs;
     @InjectView(R.id.tabHost2)
     TabHost tabHost2;
 

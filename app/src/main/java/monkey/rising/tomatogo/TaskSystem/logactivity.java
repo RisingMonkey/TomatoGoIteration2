@@ -3,10 +3,7 @@ package monkey.rising.tomatogo.TaskSystem;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.Spanned;
@@ -20,7 +17,7 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import monkey.rising.tomatogo.MainActivity.HomeActivity;
+import monkey.rising.tomatogo.MainActivity.MainActivity;
 import monkey.rising.tomatogo.R;
 import monkey.rising.tomatogo.config.Utils;
 import monkey.rising.tomatogo.dataoperate.UserControl;
@@ -35,7 +32,7 @@ public class logactivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Utils.configSP = getSharedPreferences("Settings",MODE_PRIVATE);
+        Utils.configSP = getSharedPreferences("SettingsFragment",MODE_PRIVATE);
         boolean screenOn = Utils.configSP.getBoolean("lightOn",false);
         boolean fullScreen = Utils.configSP.getBoolean("fullScreen",true);
         if (screenOn){
@@ -92,7 +89,7 @@ public class logactivity extends AppCompatActivity {
                     SharedPreferences.Editor e = sharedPreferences.edit();
                     e.putString("userid",id.getText().toString());
                     e.commit();
-                    Intent intent=new Intent(logactivity.this,HomeActivity.class);
+                    Intent intent=new Intent(logactivity.this,MainActivity.class);
                     startActivity(intent);
 
                 }

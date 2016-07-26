@@ -1,13 +1,178 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="monkey.rising.tomatogo.config.ConfigFragment">
+    android:paddingTop="80dp"
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+    android:background="#ffffff"
+    android:id="@+id/layout_settings">
+
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="昵称"
+        android:id="@+id/nickname"
+        android:background="@android:color/transparent"
+        android:textAlignment="textStart"
+        android:typeface="serif"
+        android:layout_alignParentEnd="true"
+        android:paddingLeft="16dp"
+        android:layout_toEndOf="@+id/imageView5"
+        android:drawableLeft="@mipmap/nickname"/>
 
-</FrameLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我的皮肤"
+        android:id="@+id/skin"
+        android:background="@android:color/transparent"
+        android:textAlignment="textStart"
+        android:paddingLeft="16dp"
+        android:layout_below="@+id/nickname"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:drawableLeft="@mipmap/skin"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我的成就"
+        android:id="@+id/achievement"
+        android:background="@android:color/transparent"
+        android:textAlignment="textStart"
+        android:drawableLeft="@mipmap/achievement"
+        android:paddingLeft="16dp"
+        android:allowUndo="false"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/label"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我的番茄"
+        android:id="@+id/tomato"
+        android:layout_below="@+id/achievement"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent"
+        android:textAlignment="textStart"
+        android:drawableLeft="@mipmap/ic_action_statistics"
+        android:paddingLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_alignStart="@+id/achievement" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="设置"
+        android:id="@+id/setting"
+        android:layout_below="@+id/tomato"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent"
+        android:textAlignment="textStart"
+        android:drawableLeft="@mipmap/settings"
+        android:paddingLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_alignStart="@+id/tomato" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我的标签"
+        android:id="@+id/label"
+        android:layout_below="@+id/skin"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent"
+        android:textAlignment="textStart"
+        android:paddingLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentStart="true"
+        android:drawableLeft="@mipmap/label"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="退出登录"
+        android:id="@+id/exit"
+        android:minWidth="250dp"
+        android:background="#ffffff"
+        android:layout_below="@+id/view5"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp" />
+
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/shape"
+        android:id="@+id/view4"
+        android:layout_alignTop="@+id/tomato"
+        android:layout_alignParentStart="true"></View>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/shape"
+        android:layout_above="@+id/setting"
+        android:layout_alignParentStart="true"></View>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/shape"
+        android:layout_alignTop="@+id/skin"
+        android:layout_alignParentStart="true"
+        android:id="@+id/view6"></View>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/shape"
+        android:layout_alignTop="@+id/label"
+        android:layout_alignParentStart="true"></View>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/shape"
+        android:layout_alignTop="@+id/achievement"
+        android:layout_alignParentStart="true"></View>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/shape"
+        android:layout_alignBottom="@+id/view4"
+        android:layout_alignTop="@+id/setting"></View>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/shape"
+        android:layout_alignBottom="@+id/setting"
+        android:layout_alignParentStart="true"
+        android:id="@+id/view5"></View>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView5"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/label"
+        android:layout_toStartOf="@+id/skin"
+        android:maxWidth="20dp"
+        android:layout_alignTop="@+id/skin" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView6"
+        android:layout_below="@+id/imageView5" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/view6"
+        android:layout_toStartOf="@+id/nickname" />
+</RelativeLayout>

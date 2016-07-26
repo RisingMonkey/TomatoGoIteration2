@@ -11,7 +11,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import monkey.rising.tomatogo.MainActivity.HomeActivity;
+import monkey.rising.tomatogo.MainActivity.MainActivity;
 import monkey.rising.tomatogo.R;
 import monkey.rising.tomatogo.dataoperate.Task;
 import monkey.rising.tomatogo.dataoperate.TaskControl;
@@ -40,7 +40,7 @@ public class quicktask extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent=new Intent(quicktask.this, HomeActivity.class);
+                Intent intent=new Intent(quicktask.this, MainActivity.class);
                 intent.putExtra("taskid",taskControl.findtaskbyuser(username).get(i).getId());
                 startActivity(intent);
             }

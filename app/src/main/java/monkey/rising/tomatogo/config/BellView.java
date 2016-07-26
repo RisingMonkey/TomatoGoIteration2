@@ -38,7 +38,7 @@ public class BellView extends AppCompatActivity {
                 Uri uri = Uri.parse(path.get(i));
                 MediaPlayer mp = MediaPlayer.create(BellView.this,uri);
                 mp.start();
-                Utils.configSP = getSharedPreferences("Settings",MODE_PRIVATE);
+                Utils.configSP = getSharedPreferences("SettingsFragment",MODE_PRIVATE);
                 Utils.editor = Utils.configSP.edit();
                 Utils.editor.putInt("notification",i);
                 Utils.editor.commit();

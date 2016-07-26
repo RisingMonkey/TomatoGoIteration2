@@ -38,7 +38,7 @@ public class AddTask extends AppCompatActivity {
     public TypeControl typeControl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Utils.configSP = getSharedPreferences("Settings",MODE_PRIVATE);
+        Utils.configSP = getSharedPreferences("SettingsFragment",MODE_PRIVATE);
         boolean screenOn = Utils.configSP.getBoolean("lightOn",false);
         boolean fullScreen = Utils.configSP.getBoolean("fullScreen",true);
         if (screenOn){
@@ -134,7 +134,7 @@ public class AddTask extends AppCompatActivity {
                         typeControl.insertDate(type.getText().toString(),user);
                     }
                     typeControl.closeDb();
-                Intent intent=new Intent(AddTask.this,tasklist.class);
+                Intent intent=new Intent(AddTask.this,TasklistFragment.class);
                  intent.putExtra("userid",user);
                  startActivity(intent);
 

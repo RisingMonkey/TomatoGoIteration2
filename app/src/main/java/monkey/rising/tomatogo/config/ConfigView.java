@@ -48,7 +48,7 @@ public class ConfigView extends AppCompatActivity {
         aboutHint = (TextView)findViewById(R.id.about_us_hint);
         bellText = (TextView)findViewById(R.id.bell_text);
         setInitialState();
-/*        Utils.configSP = getSharedPreferences("Settings",MODE_PRIVATE);
+/*        Utils.configSP = getSharedPreferences("SettingsFragment",MODE_PRIVATE);
         boolean screenOn = Utils.configSP.getBoolean("lightOn",false);
         boolean fullScreen = Utils.configSP.getBoolean("fullScreen",true);
         if (screenOn){
@@ -70,7 +70,7 @@ public class ConfigView extends AppCompatActivity {
         shake.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Utils.configSP = getSharedPreferences("Settings",MODE_PRIVATE);
+                Utils.configSP = getSharedPreferences("SettingsFragment",MODE_PRIVATE);
                 Utils.editor = Utils.configSP.edit();
                 if(b){
                     Utils.editor.putBoolean("shake",true);
@@ -84,7 +84,7 @@ public class ConfigView extends AppCompatActivity {
         bell.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Utils.configSP = getSharedPreferences("Settings",MODE_PRIVATE);
+                Utils.configSP = getSharedPreferences("SettingsFragment",MODE_PRIVATE);
                 Utils.editor = Utils.configSP.edit();
                 if(b){
                     Utils.editor.putBoolean("bell",true);
@@ -105,7 +105,7 @@ public class ConfigView extends AppCompatActivity {
         light.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Utils.configSP = getSharedPreferences("Settings",MODE_PRIVATE);
+                Utils.configSP = getSharedPreferences("SettingsFragment",MODE_PRIVATE);
                 Utils.editor = Utils.configSP.edit();
                 if (isChecked) {
                     Utils.editor.putBoolean("lightOn",true);
@@ -124,7 +124,7 @@ public class ConfigView extends AppCompatActivity {
         fullScreen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Utils.configSP = getSharedPreferences("Settings",MODE_PRIVATE);
+                Utils.configSP = getSharedPreferences("SettingsFragment",MODE_PRIVATE);
                 Utils.editor = Utils.configSP.edit();
 
                 if (isChecked){
@@ -225,7 +225,7 @@ public class ConfigView extends AppCompatActivity {
     }
 
     private void setInitialState(){
-        Utils.configSP = getSharedPreferences("Settings",MODE_PRIVATE);
+        Utils.configSP = getSharedPreferences("SettingsFragment",MODE_PRIVATE);
         boolean shakeStatus = Utils.configSP.getBoolean("shake",true);
         boolean bellStatus = Utils.configSP.getBoolean("bell",true);
         boolean lightOnStatus = Utils.configSP.getBoolean("lightOn",false);

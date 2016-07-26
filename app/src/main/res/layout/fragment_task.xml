@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".TaskSystem.tasklist">
+    tools:context=".TaskSystem.TasklistFragment">
 
     <include layout="@layout/content_main2"
         android:layout_width="fill_parent"
@@ -54,9 +54,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spin"
-        android:layout_alignTop="@+id/cant"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="2dp" />
+        android:layout_above="@+id/include"
+        android:layout_toStartOf="@+id/cant"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/cant" />
 
 </RelativeLayout>
