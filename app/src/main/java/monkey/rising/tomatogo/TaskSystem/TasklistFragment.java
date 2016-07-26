@@ -99,13 +99,21 @@ public class TasklistFragment extends Fragment implements slideview.RemoveListen
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         slide.setRemoveListener(this);
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
         taskControl=new TaskControl(getActivity());
         taskControl.openDataBase();
         taskControl.loadTask();
         taskControl.closeDb();
+
         c=Calendar.getInstance();
         c.setTime(new Date());
-
         chosey=c.get(Calendar.YEAR);
         chosem=c.get(Calendar.MONTH);
         chosed=c.get(Calendar.DAY_OF_MONTH);
@@ -116,6 +124,7 @@ public class TasklistFragment extends Fragment implements slideview.RemoveListen
         SharedPreferences sp = getActivity().getSharedPreferences("share",getActivity().MODE_PRIVATE);
         userid=sp.getString("userid","monkey");
 
+        data.clear();
         for (Task task:taskControl.findbyday(cant.getText().toString(),userid)) {
             data.add(task.getContent());
         }
@@ -210,7 +219,6 @@ public class TasklistFragment extends Fragment implements slideview.RemoveListen
                 startActivity(intent1);
             }
         });
-        return view;
     }
 
     @Override

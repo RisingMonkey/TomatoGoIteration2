@@ -123,9 +123,7 @@ public class EditTask extends AppCompatActivity {
 
                 typeControl.closeDb();
 
-                Intent i=new Intent(EditTask.this,TasklistFragment.class);
-                i.putExtra("userid",userid);
-                startActivity(i);
+                finish();
 
             }
         });
