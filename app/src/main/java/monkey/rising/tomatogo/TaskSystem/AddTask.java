@@ -134,10 +134,7 @@ public class AddTask extends AppCompatActivity {
                         typeControl.insertDate(type.getText().toString(),user);
                     }
                     typeControl.closeDb();
-                Intent intent=new Intent(AddTask.this,TasklistFragment.class);
-                 intent.putExtra("userid",user);
-                 startActivity(intent);
-
+                    finish();
             }else {
                     Toast.makeText(getApplicationContext()," 请完善信息",Toast.LENGTH_SHORT).show();}
         }});

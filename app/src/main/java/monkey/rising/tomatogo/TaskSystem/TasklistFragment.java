@@ -99,10 +99,18 @@ public class TasklistFragment extends Fragment implements slideview.RemoveListen
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         slide.setRemoveListener(this);
+
         taskControl=new TaskControl(getActivity());
         taskControl.openDataBase();
         taskControl.loadTask();
         taskControl.closeDb();
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         c=Calendar.getInstance();
         c.setTime(new Date());
 
@@ -210,7 +218,6 @@ public class TasklistFragment extends Fragment implements slideview.RemoveListen
                 startActivity(intent1);
             }
         });
-        return view;
     }
 
     @Override
