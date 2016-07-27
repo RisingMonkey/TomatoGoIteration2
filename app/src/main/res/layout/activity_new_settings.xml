@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="monkey.rising.tomatogo.config.NewSettings">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="#33D2FF"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/image_config"
+                android:src="@drawable/ic_settings_config_30dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:tint="#FFFFFF"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/image_user_circle"
+                android:src="@drawable/ic_setting_circle_user_100dp"
+                android:layout_below="@+id/image_config"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="21dp"
+                android:tint="#FFFFFF"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="登录"
+                android:minWidth="150dp"
+                android:id="@+id/login_button"
+                android:layout_marginTop="37dp"
+                android:layout_below="@+id/image_user_circle"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button"
+                android:textColor="#FFFFFF"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/image_cloud"
+                android:src="@drawable/ic_setting_cloud_24dp"
+                android:layout_above="@+id/image_user_circle"
+                android:layout_toLeftOf="@+id/image_config"
+                android:layout_toStartOf="@+id/image_config"
+                android:tint="#FFFFFF"/>
+        </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/linearLayout_row1"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/image_background_image"
+                    android:src="@drawable/ic_setting_bg_60dp"
+                    android:layout_marginLeft="42dp"
+                    android:layout_marginStart="42dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:tint="#FF96FC86"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/image_theme"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_setting_theme_60dp"
+                    android:tint="#FFF7F255"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/image_note"
+                    android:src="@drawable/ic_setting_note_60dp"
+                    android:layout_alignTop="@+id/image_theme"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="42dp"
+                    android:layout_marginEnd="42dp"
+                    android:tint="#FF1FF5F2"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="背景图片"
+                    android:id="@+id/text_bg"
+                    android:layout_below="@+id/image_background_image"
+                    android:layout_alignLeft="@+id/image_background_image"
+                    android:layout_alignStart="@+id/image_background_image"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的主题"
+                    android:id="@+id/text_theme"
+                    android:layout_alignBottom="@+id/text_bg"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的便笺"
+                    android:id="@+id/text_note"
+                    android:layout_alignTop="@+id/text_theme"
+                    android:layout_alignRight="@+id/image_note"
+                    android:layout_alignEnd="@+id/image_note" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:id="@+id/linearLayout_row2"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/image_achievement"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="42dp"
+                    android:layout_marginStart="42dp"
+                    android:src="@drawable/ic_setting_achievement_60dp"
+                    android:tint="#FFF0AAC9"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/image_accounting"
+                    android:layout_alignTop="@+id/image_achievement"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_setting_accounting_60dp"
+                    android:tint="#FFEF9FFF"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的成就"
+                    android:id="@+id/text_achievement"
+                    android:layout_below="@+id/image_achievement"
+                    android:layout_alignLeft="@+id/image_achievement"
+                    android:layout_alignStart="@+id/image_achievement" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的番茄"
+                    android:id="@+id/text_accounting"
+                    android:layout_below="@+id/image_accounting"
+                    android:layout_centerHorizontal="true" />
+
+            </RelativeLayout>
+
+
+</LinearLayout>
